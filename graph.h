@@ -252,7 +252,7 @@ public:
         //return distance_b[last];
     }
 
-    void print(graph G, int n, int m)
+    void print(int n, int m)
     {
         int len = 2*n+1;
         int wid = 2*m+1;
@@ -260,35 +260,35 @@ public:
         for (int i=0; i<len; i++)
             for (int j=0; j<wid; j++)
                 a[i][j] = 'X';
-        for (auto v: G.V())
-            a[2*G.coor(v).first+1][2*G.coor(v).second+1] = ' ';
-        for (auto e: G.E())
+        for (auto v: V())
+            a[2*coor(v).first+1][2*coor(v).second+1] = ' ';
+        for (auto e: E())
         {
             T v = e.first;
             T w = e.second;
-            int x_amt = abs(G.coor(v).first - G.coor(w).first);
-            int y_amt = abs(G.coor(v).second - G.coor(w).second);
+            int x_amt = abs(coor(v).first - coor(w).first);
+            int y_amt = abs(coor(v).second - coor(w).second);
             int x, y;
             if (x_amt == 1 && y_amt == 0) // If horizontally adjacent
             {
-                if (G.coor(v).first > G.coor(w).first)
-                    x = 2*G.coor(v).first;
+                if (coor(v).first > coor(w).first)
+                    x = 2*coor(v).first;
                 else
-                    x = 2*G.coor(v).first + 2;
-                y = 2*G.coor(v).second+1;
+                    x = 2*coor(v).first + 2;
+                y = 2*coor(v).second+1;
             }
             else if (x_amt == 0 && y_amt == 1) // If vertically adjacent
             {
-                if (G.coor(v).second > G.coor(w).second)
-                    y = 2*G.coor(v).second;
+                if (coor(v).second > coor(w).second)
+                    y = 2*coor(v).second;
                 else
-                    y = 2*G.coor(v).second + 2;
-                x = 2*G.coor(v).first+1;
+                    y = 2*coor(v).second + 2;
+                x = 2*coor(v).first+1;
             }
             a[x][y] = ' ';
         }
         a[1][1] = 'S';
-        T last = G.diameter();
+        T last = diameter();
         a[2*coor(last).first+1][2*coor(last).second+1] = '?';
 
         for (int i=0; i<wid; i++)
