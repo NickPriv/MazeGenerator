@@ -25,7 +25,7 @@ int main()
         }
     }
     cout << "Start at the S and find your way to the question mark." << endl;
-    G.print(G.dfs(0,0,0),n,m);
+    G.dfs(0,0,0).print(n,m);
 
     return 0;
 }
