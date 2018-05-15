@@ -252,7 +252,7 @@ public:
         //return distance_b[last];
     }
 
-    void print(int n, int m)
+    void print(int n, int m) const
     {
         int len = 2*n+1;
         int wid = 2*m+1;
